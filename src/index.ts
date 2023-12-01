@@ -1,35 +1,18 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import session from "express-session";
-import path from "path";
 import http from "http";
 import cors from "cors";
-import { createPool } from "mysql2/promise";
 import passport  from "passport";
-import bodyParser, { json } from "body-parser";
-import jsonwebtoken from "jsonwebtoken"
+import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
-import { Server } from 'socket.io';
 import dotenv from 'dotenv';
-import { DataTypes, Sequelize } from 'sequelize';
-import  Employee  from './model/employee';
-
-
+import { DB } from './typeOrm';
+import { Bank } from './model/Bank';
+import { Account } from './model/Account';
+import { Currency } from './model/Currency';
 dotenv.config();
 
-interface EmployeeAttributes {
-  id?: number;
-  first_name: string;
-  last_name?: string | null;
-  job_title?: string | null;
-  salary?: number | null;
-}
-export const pool = createPool({
-  host: process.env.db_host, // Replace with your host name
-  user: process.env.db_user, // Replace with your root name
-  password: process.env.db_password, // Replace with your database password
-  database: process.env.db_name, // Replace with your database Name
-  multipleStatements: true
-});
+
 
 export const app = express();
 const server = http.createServer(app);
@@ -60,42 +43,54 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use("/public/images",express.static("./public/images"));
+app.use(express.static("public"));
+
+
 
 
 
 app.get("/getData", async (req, res) => {
-  // const employees = await Employee.findAll();
-
-  // const employeeCount = await Employee.count();
-  const limitedEmployeeNames = await Employee.findAll({
-    attributes: ['first_name'],
-    order: [['salary', 'ASC']],
-    limit: 4,
-  });
-
-
-  return res.send({ success: true, message: limitedEmployeeNames });
-
+  const person = await DB.manager.find(Account)
+  return res.send({ success: true, message: person });
 });
 
-app.get('/insert', async (req: Request, res: Response) => {
-  const employeeData: any = {
-    first_name: 'John',
-    last_name: 'Doe',
-    job_title: 'Software Engineer',
-    salary: 80000.0,
-  };
+app.get("/createAccount", async (req, res) => {
+  const body = {
+    bankName: "string",
+    accountNumber: "string",
+    currency: {
+      isoCode: "AMD",
+      countryOrigin: "Armenia",
+      signCharacter: "֏" 
+    },
+    accountName: "Davit"
+  }
 
   try {
-    const employee = await Employee.create(employeeData);
-    return res.send({ success: true, message: employee });
-  } catch (error) {
-    console.error('Error creating employee:', error);
-    return res.status(500).send({ success: false, message: 'Internal Server Error' });
-  }
-});
+    const IsoCode = await DB.manager.findOne(Currency, {where: {isoCode: body.currency.isoCode}});
 
+    if (!IsoCode) {
+      const newCurrency = new Currency();
+      newCurrency.isoCode = body.currency.isoCode;
+      newCurrency.countryOrigin = body.currency.countryOrigin; 
+      newCurrency.signCharacter = body.currency.signCharacter; 
+    
+      await DB.manager.save(newCurrency);
+
+      console.log('New currency added:', newCurrency);
+    } else {
+      console.log('currency already exist');
+    }
+    
+
+    console.log(IsoCode?.countryOrigin)
+  } catch(err) {
+    console.log(err)
+  }
+
+
+  return res.send({ success: true, message: 'person' });
+});
 
 server.listen(process.env.BACKEND_PORT || 8000, () => {
   console.log(`PORT work -> ${process.env.BACKEND_PORT}`);
