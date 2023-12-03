@@ -4,7 +4,6 @@ import { Bank } from "./model/Bank";
 import { Currency } from "./model/Currency";
 import { Account } from "./model/Account";
 dotenv.config();
-
 export const DB = new DataSource({
   type: 'mysql',
   host: process.env.db_host || 'localhost',

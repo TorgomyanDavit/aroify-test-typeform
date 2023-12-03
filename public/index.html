@@ -8,27 +8,42 @@
 </head>
 <body>
     <div class="createPopup">
-        <form method="post" action="/createAccount">
-            <label for="bankName">Bank Name:</label>
-            <input type="text" id="bankName" name="bankName" value="" required><br>
-
+        <div>
             <label for="accountNumber">Account Number:</label>
             <input type="text" id="accountNumber" name="accountNumber" value="" required><br>
-
-            <label for="isoCode">ISO Code:</label>
-            <input type="text" id="isoCode" name="isoCode" value="" required><br>
-
-            <label for="countryOrigin">Country Origin:</label>
-            <input type="text" id="countryOrigin" name="countryOrigin" value="" required><br>
-
-            <label for="signCharacter">Sign Character:</label>
-            <input type="text" id="signCharacter" name="signCharacter" value="" required><br>
 
             <label for="accountName">Account Name:</label>
             <input type="text" id="accountName" name="accountName" value="" required><br>
 
-            <input type="submit" value="Submit">
-        </form>
+
+            <label>Bank Name:</label>
+            <div class="main_currency">
+                <input type="radio" id="bank1" name="bankName" value="Bank1" required>
+                <label for="bank1">Ameria Bank</label>
+
+                <input type="radio" id="bank2" name="bankName" value="Bank2" required>
+                <label for="bank2">Ardshin Bank</label>
+
+                <input type="radio" id="bank3" name="bankName" value="Bank3" required>
+                <label for="bank3">Converse Bank</label>
+            </div>
+
+            <label>Currency:</label>
+            <div class="main_currency">
+                <input type="radio" id="currencyUSD" name="currency" value="USD" required>
+                <label for="currencyUSD">USD ($)</label>
+                
+                <input type="radio" id="currencyEUR" name="currency" value="EUR" required>
+                <label for="currencyEUR">EUR (€)</label>
+                
+                <input type="radio" id="currencyGBP" name="currency" value="AMD" required>
+                <label for="currencyGBP">AMD (֏)</label>
+            </div>
+
+            <button class="button">Submit</button>
+        </div>
     </div>
+
+    <script src="./script.js"></script>
 </body>
 </html>

@@ -10,6 +10,7 @@ import { DB } from './typeOrm';
 import { Bank } from './model/Bank';
 import { Account } from './model/Account';
 import { Currency } from './model/Currency';
+import { getCurrency } from './utils/addFunction';
 dotenv.config();
 
 
@@ -45,45 +46,54 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static("public"));
 
-
-
-
-
 app.get("/getData", async (req, res) => {
   const person = await DB.manager.find(Account)
   return res.send({ success: true, message: person });
 });
 
-app.get("/createAccount", async (req, res) => {
-  const body = {
-    bankName: "string",
-    accountNumber: "string",
-    currency: {
-      isoCode: "AMD",
-      countryOrigin: "Armenia",
-      signCharacter: "֏" 
-    },
-    accountName: "Davit"
+app.post("/createAccount", async (req, res) => {
+  const {accountNumber,accountName,bankName,currency} = req.body
+  const {countryOrigin,isoCode,signCharacter} = getCurrency(currency)
+  let currensyId:number;
+
+
+  async function AddNewCurrency() {
+    const newCurrency = new Currency();
+    newCurrency.isoCode = isoCode;
+    newCurrency.countryOrigin = countryOrigin; 
+    newCurrency.signCharacter = signCharacter; 
+    const row = await DB.manager.save(newCurrency);
+    currensyId = row.currency_id
+    console.log('New currency added:', newCurrency);
+  }
+
+
+  async function AddAccount() {
+    const newAccount = await DB.createQueryBuilder().insert().into(Account)
+    .values({
+      accountNumber: accountNumber,
+      accountName: accountName,
+      bank_id: 2,
+      currency_id: currensyId,
+    })
+    .execute()
+    console.log('New Account added:', newAccount);
   }
 
   try {
-    const IsoCode = await DB.manager.findOne(Currency, {where: {isoCode: body.currency.isoCode}});
+    const IsoCode = await DB.manager.findOne(Currency, {where: {isoCode: isoCode}});
+    const accounts = await DB.manager.find(Account);
 
-    if (!IsoCode) {
-      const newCurrency = new Currency();
-      newCurrency.isoCode = body.currency.isoCode;
-      newCurrency.countryOrigin = body.currency.countryOrigin; 
-      newCurrency.signCharacter = body.currency.signCharacter; 
     
-      await DB.manager.save(newCurrency);
-
-      console.log('New currency added:', newCurrency);
+    if (!IsoCode) {
+      AddNewCurrency()
+      AddAccount()
     } else {
+      currensyId = IsoCode.currency_id
+      AddAccount()
       console.log('currency already exist');
     }
-    
 
-    console.log(IsoCode?.countryOrigin)
   } catch(err) {
     console.log(err)
   }
