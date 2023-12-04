@@ -8,11 +8,7 @@ import cookieParser from "cookie-parser";
 import dotenv from 'dotenv';
 import AccountRouter from "./routing/Account"
 import BankRouter from "./routing/Bank"
-
 dotenv.config();
-
-
-
 export const app = express();
 const server = http.createServer(app);
 
