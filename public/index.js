@@ -18,7 +18,7 @@
             });
         })
         .catch(error => {
-            console.error('Error fetching data:', error);
+            console.log('Error fetching data:', error);
         });
 
     // Event listener for option selection
@@ -50,7 +50,7 @@
             console.log('Selected Bank Data:', selectedBankData);
         })
         .catch(error => {
-            console.error('Error fetching additional data:', error);
+            console.log('Error fetching additional data:', error);
         });
     });
 })();
