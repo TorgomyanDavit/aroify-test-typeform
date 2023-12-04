@@ -2,7 +2,6 @@ import request from 'supertest';
 import { app } from '../../index'; // Adjust the path based on your project structure
 import { DB } from '../../typeOrm';
 import { Account } from '../../model/Account';
-import { Currency } from '../../model/Currency';
 
 beforeAll(async () => {
     await DB.initialize();
@@ -13,7 +12,6 @@ afterAll(async () => {
 });
 
 describe('Account Route', () => {
-
     describe('get acounts as bank id', () => {
         test('should fetch accounts for a bank', async () => {
             const bankId = 1;
