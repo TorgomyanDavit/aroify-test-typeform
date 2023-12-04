@@ -7,6 +7,14 @@ export class Account {
   @PrimaryGeneratedColumn()
     account_id!: number;
 
+  @ManyToOne(() => Bank, { nullable: true, onDelete: 'SET NULL' })
+  @JoinColumn({ name: 'bank_id' })
+    bank!: Bank;
+
+  @ManyToOne(() => Currency, { nullable: true, onDelete: 'SET NULL' })
+    @JoinColumn({ name: 'currency_id' })
+    currency!: Currency;
+
   @Column()
     bank_id!: number;
 

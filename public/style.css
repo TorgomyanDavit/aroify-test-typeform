@@ -1,4 +1,3 @@
-/* Style for the container */
 .createPopup {
     max-width: 600px;
     margin: 0 auto;
@@ -8,7 +7,6 @@
     background-color: #f9f9f9;
 }
 
-/* Style for labels and input fields */
 label {
     display: block;
     font-size: 20px;
@@ -23,7 +21,6 @@ input[type="text"] {
     font-size: 20px;
 }
 
-/* Style for radio buttons and labels */
 .main_currency {
     display: flex;
     align-items: center;
@@ -34,7 +31,6 @@ input[type="text"] {
     margin-right: 5px;
 }
 
-/* Style for the submit button */
 .button {
     background-color: #4caf50;
     color: #fff;
@@ -47,4 +43,83 @@ input[type="text"] {
 
 .button:hover {
     background-color: #45a049;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal p {
+    margin: 0; /* Remove default margin for the paragraph inside the modal */
+}
+
+.accountInfo {
+    display: flex;
+    flex-direction: row;
+}
+
+.container {
+    margin: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.container a,
+.container select {
+    padding: 10px;
+    background-color: #4CAF50; 
+    color: #fff; 
+    border: 1px solid #4CAF50;
+    border-radius: 5px;
+    margin-right: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.container a:hover,
+.container select:hover {
+    background-color: #45a049; 
+}
+
+.container select option[selected] {
+    background-color: #45a049; 
+    color: #fff; 
+}
+
+.show {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.show p {
+    background-color: #f0f0f0; 
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.show p.name {
+    font-weight: bold;
+    color: #333; 
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555; 
+}
+
+.accountItem {
+    display: flex;
+    gap: 20px;
 }

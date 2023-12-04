@@ -4,46 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <title>Create Account</title>
+    <title>Document</title>
 </head>
 <body>
-    <div class="createPopup">
-        <div>
-            <label for="accountNumber">Account Number:</label>
-            <input type="text" id="accountNumber" name="accountNumber" value="" required><br>
-
-            <label for="accountName">Account Name:</label>
-            <input type="text" id="accountName" name="accountName" value="" required><br>
-
-
-            <label>Bank Name:</label>
-            <div class="main_currency">
-                <input type="radio" id="bank1" name="bankName" value="Bank1" required>
-                <label for="bank1">Ameria Bank</label>
-
-                <input type="radio" id="bank2" name="bankName" value="Bank2" required>
-                <label for="bank2">Ardshin Bank</label>
-
-                <input type="radio" id="bank3" name="bankName" value="Bank3" required>
-                <label for="bank3">Converse Bank</label>
-            </div>
-
-            <label>Currency:</label>
-            <div class="main_currency">
-                <input type="radio" id="currencyUSD" name="currency" value="USD" required>
-                <label for="currencyUSD">USD ($)</label>
-                
-                <input type="radio" id="currencyEUR" name="currency" value="EUR" required>
-                <label for="currencyEUR">EUR (€)</label>
-                
-                <input type="radio" id="currencyGBP" name="currency" value="AMD" required>
-                <label for="currencyGBP">AMD (֏)</label>
-            </div>
-
-            <button class="button">Submit</button>
-        </div>
+    <div class="container">
+        <a href="./createAccount.html">Create Account</a>
+        <select id="accountType"></select>
+        <div id="accountInfo" class="show"></div>
     </div>
-
-    <script src="./script.js"></script>
+    <script src="./index.js"></script>
 </body>
 </html>
