@@ -17,7 +17,7 @@ exports.DB = new typeorm_1.DataSource({
     username: process.env.db_user || 'your_username',
     password: process.env.db_password || 'your_password',
     database: process.env.db_name || 'your_database_name',
-    entities: [Bank_1.Bank, Currency_1.Currency, Account_1.Account]
+    entities: [Bank_1.Bank, Currency_1.Currency, Account_1.Account],
 });
 exports.DB.initialize()
     .then(() => console.log("Data Source has been initialized!"))

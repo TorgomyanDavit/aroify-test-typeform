@@ -31,6 +31,14 @@ __decorate([
     __metadata("design:type", Currency_1.Currency)
 ], Account.prototype, "currency", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Account.prototype, "bank_id", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Account.prototype, "currency_id", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 20, nullable: false, name: 'accountNumber' }),
     __metadata("design:type", String)
 ], Account.prototype, "accountNumber", void 0);
@@ -39,6 +47,5 @@ __decorate([
     __metadata("design:type", String)
 ], Account.prototype, "accountName", void 0);
 exports.Account = Account = __decorate([
-    (0, typeorm_1.Entity)({ name: "accounts" }),
     (0, typeorm_1.Entity)({ name: 'accounts' })
 ], Account);
