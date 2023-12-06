@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql
+    environment:
+      NODE_ENV: development
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: foobar
+      DB_NAME: bankdb
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: foobar
+      MYSQL_DATABASE: bankdb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: foobar
+    ports:
+      - "3306:3306"
