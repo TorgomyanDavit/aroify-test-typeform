@@ -45,6 +45,7 @@
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.35.1",
     "socket.io": "^4.7.2",
-    "typeorm": "^0.3.17"
+    "typeorm": "^0.3.17",
+    "wait-for-it": "^1.0.0"
   }
 }

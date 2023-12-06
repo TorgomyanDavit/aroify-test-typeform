@@ -20,7 +20,5 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: foobar
       MYSQL_DATABASE: bankdb
-      MYSQL_USER: root
-      MYSQL_PASSWORD: foobar
     ports:
       - "3307:3306"  # Use a different host port (e.g., 3307) for MySQL
