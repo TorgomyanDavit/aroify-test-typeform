@@ -5,13 +5,14 @@ import { Currency } from "./model/Currency";
 import { Account } from "./model/Account";
 
 dotenv.config();
+
 export const DB = new DataSource({
   type: 'mysql',
-  host: process.env.db_host || 'localhost',
+  host: process.env.DB_HOST || 'localhost',
   port: 3306,
-  username: process.env.db_user || 'your_username',
-  password: process.env.db_password || 'your_password',
-  database: process.env.db_name || 'your_database_name',
+  username: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || 'foobar',
+  database: process.env.DB_NAME || 'bankdb',
   entities: [Bank, Currency, Account],
 });
 
