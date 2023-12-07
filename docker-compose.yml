@@ -23,7 +23,6 @@ services:
       dockerfile: Dockerfile.mysql
     environment:
       - MYSQL_ROOT_PASSWORD=foobar
-      - MYSQL_DATABASE=bankdb
     networks:
       - my-network
 
