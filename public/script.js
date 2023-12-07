@@ -1,6 +1,6 @@
 const button = document.querySelector(".button")
 var modal = document.getElementById("successModal");
-
+const banksContainer = document.querySelector('.main_currency');
 function generateRandomId() {
     var randomId = Math.floor(Math.random() * 1000000).toString();
     document.getElementById("accountNumber").value = randomId;
@@ -8,9 +8,37 @@ function generateRandomId() {
 
 generateRandomId();
 
+async function getBanks() {
+    const banksContainer = document.querySelector('.main_currency');
+
+    try {
+        await fetch("http://localhost:8000/banks")
+        .then((res) => res.json())
+        .then(data => {
+            data.data.forEach((bank, index) => {
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.id = `bank${index + 1}`;
+                radio.name = 'bankName';
+                radio.value = bank.bankName;
+                radio.required = true;
+
+                const label = document.createElement('label');
+                label.htmlFor = `bank${index + 1}`;
+                label.textContent = bank.bankName;
+
+                banksContainer.appendChild(radio);
+                banksContainer.appendChild(label);
+            });
+        })
+    } catch (error) {
+        console.log('Error fetching data:', error.message);
+    }
+}
+
+window.addEventListener('load', getBanks);
 
 function submitForm() {
-    // Custom logic to handle the form submission
     try {
         var accountNumber = document.getElementById("accountNumber").value;
         var accountName = document.getElementById("accountName").value;
@@ -30,7 +58,6 @@ function submitForm() {
             body: JSON.stringify(formData)            
         })
         .then(data => {
-            console.log(data);
             modal.style.display = "block";
             setTimeout(function () { modal.style.display = "none" }, 5000);
     

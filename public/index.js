@@ -1,27 +1,25 @@
 (function getBanks() {
     const selectElement = document.getElementById("accountType");
 
-    // Fetch data and populate options
     fetch("http://localhost:8000/banks")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            data.data.forEach(bank => {
-                const optionElement = document.createElement("option");
-                optionElement.value = bank.bank_id;
-                optionElement.textContent = bank.bankName;
-                selectElement.appendChild(optionElement);
-            });
-        })
-        .catch(error => {
-            console.log('Error fetching data:', error);
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        data.data.forEach(bank => {
+            const optionElement = document.createElement("option");
+            optionElement.value = bank.bank_id;
+            optionElement.textContent = bank.bankName;
+            selectElement.appendChild(optionElement);
         });
+    })
+    .catch(error => {
+        console.log('Error fetching data:', error);
+    });
 
-    // Event listener for option selection
     selectElement.addEventListener("change", function () {
         const selectedBankId = this.value;
         fetch(`http://localhost:8000/accounts/${selectedBankId}`)
@@ -33,7 +31,7 @@
         })
         .then(selectedBankData => {
             const accountInfoContainer = document.getElementById("accountInfo");
-            accountInfoContainer.innerHTML = ''; // Clear existing content
+            accountInfoContainer.innerHTML = ''; 
             selectedBankData.data.forEach(dataItem => {
                 const divElement = document.createElement("div");
                 divElement.classList.add("accountItem");
@@ -46,8 +44,6 @@
                 `;
                 accountInfoContainer.appendChild(divElement);
             });
-    
-            console.log('Selected Bank Data:', selectedBankData);
         })
         .catch(error => {
             console.log('Error fetching additional data:', error);

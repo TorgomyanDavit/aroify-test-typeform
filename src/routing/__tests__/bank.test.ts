@@ -13,8 +13,6 @@ afterAll(async () => {
 describe('Bank Route', () => {
   test('should fetch banks', async () => {
     const response = await request(app).get('/banks');
-
-    console.log(response.body); 
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('success', true);
     expect(response.body).toHaveProperty('message', 'Banks found');
