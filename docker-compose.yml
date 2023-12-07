@@ -1,24 +1,31 @@
 version: '3'
 
 services:
-  backend:
+  nodejs-app:
     build:
       context: .
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     depends_on:
-      - mysql
+      - mysql-db
     environment:
-      NODE_ENV: development
-      DB_HOST: mysql
-      DB_USER: root
-      DB_PASSWORD: foobar
-      DB_NAME: bankdb
+      - DB_HOST=mysql-db
+      - DB_USER=root
+      - DB_PASSWORD=foobar
+      - DB_NAME=bankdb
+    networks:
+      - my-network
 
-  mysql:
-    image: mysql:latest
+  mysql-db:
+    build:
+      context: .
+      dockerfile: Dockerfile.mysql
     environment:
-      MYSQL_ROOT_PASSWORD: foobar
-      MYSQL_DATABASE: bankdb
-    ports:
-      - "3307:3306"  # Use a different host port (e.g., 3307) for MySQL
+      - MYSQL_ROOT_PASSWORD=foobar
+      - MYSQL_DATABASE=bankdb
+    networks:
+      - my-network
+
+networks:
+  my-network:
