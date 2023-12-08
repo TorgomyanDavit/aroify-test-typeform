@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import { getCurrency } from "../utils/addFunction";
 import { Currency } from "../model/Currency";
-import { DB } from "../typeOrm";
+import { DB } from "../dbInitialize";
 import { Bank } from "../model/Bank";
 import { Account } from "../model/Account";
 const router = express.Router();

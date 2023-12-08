@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { DB } from "../typeOrm";
+import { DB } from "../dbInitialize";
 import { Bank } from "../model/Bank";
 const router = express.Router();
 

@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { app } from '../../index'; // Adjust the path based on your project structure
-import { DB } from '../../typeOrm';
+import { DB } from '../../dbInitialize';
 
 beforeAll(async () => {
   await DB.initialize();
