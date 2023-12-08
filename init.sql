@@ -4,7 +4,7 @@ USE bankdb;
 
 CREATE TABLE IF NOT EXISTS banks (
   bank_id INT PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(255) NOT NULL
+  bankName VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS currencies (
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS accounts (
   FOREIGN KEY (currency_id) REFERENCES currencies (currency_id)
 );
 
-INSERT INTO banks (name) VALUES
+INSERT INTO banks (bankName) VALUES
   ('Bank A'),
   ('Bank B'),
   ('Bank C');
