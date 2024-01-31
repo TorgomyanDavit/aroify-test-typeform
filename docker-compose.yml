@@ -24,15 +24,9 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=foobar
     networks:
-      my-network:
-        ipv4_address: 172.26.0.2
-        aliases:
-          - mysql-db
+      - my-network
     command: --bind-address=0.0.0.0
 
 networks:
   my-network:
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.26.0.0/16
+
