@@ -28,7 +28,6 @@ services:
         ipv4_address: 172.26.0.2
         aliases:
           - mysql-db
-    command: --bind-address=0.0.0.0
 
 networks:
   my-network:
