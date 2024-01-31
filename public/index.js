@@ -23,7 +23,7 @@
 
     selectElement.addEventListener("change", function () {
         const selectedBankId = this.value;
-        fetch(`http://localhost:8000/accounts/${selectedBankId}`)
+        fetch(`http://vmi1512737.contaboserver.net/accounts/${selectedBankId}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);

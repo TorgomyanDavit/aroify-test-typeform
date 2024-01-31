@@ -12,7 +12,7 @@ async function getBanks() {
     const banksContainer = document.querySelector('.main_currency');
 
     try {
-        await fetch("http://localhost:8000/banks")
+        await fetch("http://vmi1512737.contaboserver.net/banks")
         .then((res) => res.json())
         .then(data => {
             data.data.forEach((bank, index) => {
@@ -51,7 +51,7 @@ function submitForm() {
             currency: currency
         };
         
-        fetch("http://localhost:8000/accounts/create", {
+        fetch("http://vmi1512737.contaboserver.net/accounts/create", {
             method: 'POST',
             body: {accountNumber,accountName,bankName,currency},  
             headers: {'Content-Type': 'application/json'},
