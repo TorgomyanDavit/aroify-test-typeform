@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.get("/", async (req: Request, res: Response) => {
     const foundBank = await DB.manager.find(Bank);
+
+    console.log(foundBank,"foundBank")
     return res.send({ success: true, message: 'Banks found',data:foundBank });
 });
 
