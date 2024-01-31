@@ -15,7 +15,7 @@ services:
       - DB_PASSWORD=foobar
       - DB_NAME=bankdb
     networks:
-      - my-network
+      my-network:
 
   mysql-db:
     build:
@@ -24,9 +24,12 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=foobar
     networks:
-      - my-network
+      my-network:
+        ipv4_address: 172.20.0.2  # Assign a static IP address
     command: --bind-address=0.0.0.0
 
 networks:
   my-network:
-
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
