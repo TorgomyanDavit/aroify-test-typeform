@@ -25,7 +25,6 @@ services:
       - MYSQL_ROOT_PASSWORD=foobar
     networks:
       - my-network
-    command: --bind-address=0.0.0.0
 
 networks:
   my-network:
