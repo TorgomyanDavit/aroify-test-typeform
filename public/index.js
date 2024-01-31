@@ -1,7 +1,8 @@
 (function getBanks() {
     const selectElement = document.getElementById("accountType");
+    // fetch("http://localhost:8000/banks")
 
-    fetch("http://localhost:8000/banks")
+    fetch("http://38.242.152.121:8000/banks")
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
