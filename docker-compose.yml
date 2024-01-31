@@ -25,7 +25,10 @@ services:
       - MYSQL_ROOT_PASSWORD=foobar
     networks:
       my-network:
-        ipv4_address: 172.26.0.2  # Set a static IP address for the MySQL container
+        ipv4_address: 172.26.0.2
+      my-network-alias:
+        aliases:
+          - mysql-db
     command: --bind-address=0.0.0.0
 
 networks:
@@ -33,4 +36,5 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 172.26.0.0/16  # Specify a subnet for the network
+        - subnet: 172.26.0.0/16
+
