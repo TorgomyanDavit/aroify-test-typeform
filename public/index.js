@@ -2,7 +2,7 @@
     const selectElement = document.getElementById("accountType");
     // fetch("http://localhost:8000/banks")
 
-    fetch("http://vmi1512737.:8000/banks")
+    fetch("http://vmi1512737.contaboserver.net:8000/banks")
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
