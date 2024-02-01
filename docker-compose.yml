@@ -12,6 +12,9 @@ services:
       - DB_USER=David  # Replace with your MySQL user
       - DB_PASSWORD=LiloDavo1996#  # Replace with your MySQL password
       - DB_NAME=bankdb  # Replace with your MySQL database name
+      - db_redis_host=redis-container  # New line for Redis host
+      - db_redis_port=6380              # New line for Redis port
+      - db_redis_password=LiloDavo1996# # New line for Redis password
     networks:
       - mynetwork
 
