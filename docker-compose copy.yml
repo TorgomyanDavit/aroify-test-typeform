@@ -11,8 +11,8 @@ services:
       - mysql-db
     environment:
       - DB_HOST=mysql-db
-      - DB_USER=David
-      - DB_PASSWORD=LiloDavo1996#
+      - DB_USER=root
+      - DB_PASSWORD=foobar
       - DB_NAME=bankdb
     networks:
       my-network:
@@ -22,7 +22,7 @@ services:
       context: .
       dockerfile: Dockerfile.mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=LiloDavo1996#
+      - MYSQL_ROOT_PASSWORD=foobar
     networks:
       my-network:
         ipv4_address: 172.20.0.2  # Assign a static IP address

@@ -10,24 +10,24 @@ services:
     depends_on:
       - mysql-db
     environment:
-      - DB_HOST=mysql-db
-      - DB_USER=root
-      - DB_PASSWORD=foobar
+      - DB_HOST=mysql-container
+      - DB_USER=David
+      - DB_PASSWORD=LiloDavo1996#
       - DB_NAME=bankdb
     networks:
-      - my-network
+      - mynetwork
 
-  mysql-db:
+  mysql-container:
     image: mysql:3
     environment:
-      - MYSQL_ROOT_PASSWORD=foobar
+      - MYSQL_ROOT_PASSWORD=LiloDavo1996#
     networks:
-      my-network:
+      mynetwork:
         ipv4_address: 172.20.0.2
     command: --bind-address=0.0.0.0
 
 networks:
-  my-network:
+  mynetwork:
     ipam:
       config:
         - subnet: 172.20.0.0/16
