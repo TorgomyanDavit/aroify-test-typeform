@@ -7,16 +7,26 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+    depends_on:
+      - mysql-db
     environment:
       - DB_HOST=mysql-container  # Replace with the actual host or IP of your MySQL server
       - DB_USER=David
       - DB_PASSWORD=LiloDavo1996#
       - DB_NAME=bankdb
-      networks:
-        mynetwork:
+    networks:
+      mynetwork:
 
-  networks:
-    mynetwork:
-      ipam:
-        config:
-          - subnet: 172.20.0.0/16    
+  mysql-container:
+    environment:
+      - MYSQL_ROOT_PASSWORD=foobar
+    networks:
+      mynetwork:
+        ipv4_address: 172.20.0.2  # Assign a static IP address
+    command: --bind-address=0.0.0.0
+
+networks:
+  mynetwork:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
