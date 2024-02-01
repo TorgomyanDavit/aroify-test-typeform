@@ -18,12 +18,12 @@ services:
       - my-network
 
   mysql-db:
-    image: mysql:3  # Use the desired MySQL image with version 3
+    image: mysql:3
     environment:
       - MYSQL_ROOT_PASSWORD=foobar
     networks:
       - my-network
-    ipv4_address: 172.20.0.2  # Assign a static IP address
+    ip: 172.20.0.2  # Use 'ip' instead of 'ipv4_address'
     command: --bind-address=0.0.0.0
 
 networks:
