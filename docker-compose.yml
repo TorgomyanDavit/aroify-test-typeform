@@ -18,6 +18,8 @@ services:
       mynetwork:
 
   mysql-container:
+      build:
+       context: .
     environment:
       - MYSQL_ROOT_PASSWORD=foobar
     networks:
