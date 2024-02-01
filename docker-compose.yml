@@ -7,8 +7,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    depends_on:
-      - mysql-container
     environment:
       - DB_HOST=mysql-container
       - DB_USER=David
