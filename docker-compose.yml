@@ -12,3 +12,23 @@ services:
       - DB_USER=David
       - DB_PASSWORD=LiloDavo1996#
       - DB_NAME=bankdb
+
+  mysql-container:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: LiloDavo1996#
+      MYSQL_DATABASE: bankdb
+      MYSQL_PASSWORD: LiloDavo1996#
+    ports:
+      - "3307:3306"
+    networks:
+      - mynetwork
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          ip_range: 172.20.0.2/24
+
+networks:
+  mynetwork:
+    driver: bridge
