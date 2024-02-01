@@ -15,17 +15,15 @@ services:
       - DB_PASSWORD=foobar
       - DB_NAME=bankdb
     networks:
-      my-network:
+      - my-network
 
   mysql-db:
-    build:
-      context: .
-      dockerfile: Dockerfile.mysql
+    image: mysql:3
     environment:
       - MYSQL_ROOT_PASSWORD=foobar
     networks:
       my-network:
-        ipv4_address: 172.20.0.2  # Assign a static IP address
+        ipv4_address: 172.20.0.2
     command: --bind-address=0.0.0.0
 
 networks:
