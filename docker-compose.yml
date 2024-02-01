@@ -30,5 +30,4 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.20.0.0/16
-          ip_range: 172.20.0.2/24
+        - subnet: 172.20.0.2/24  # Corrected ip_range to subnet
