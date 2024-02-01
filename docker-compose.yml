@@ -7,8 +7,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    depends_on:
-      - mysql-container
     environment:
       - DB_HOST=mysql-container
       - DB_USER=root
@@ -17,20 +15,7 @@ services:
     networks:
       - mynetwork
 
-  mysql-container:
-    image: mysql:latest
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: LiloDavo1996#
-      MYSQL_DATABASE: bankdb
-      MYSQL_PASSWORD: LiloDavo1996#
-    networks:
-      mynetwork:
-        ipv4_address: 172.20.0.2
-    command: --bind-address=0.0.0.0
-
 networks:
-  mynetwork:
-    ipam:
-      config:
-        - subnet: 172.20.0.0/16
+  default:
+    external:
+      name: mynetwork
