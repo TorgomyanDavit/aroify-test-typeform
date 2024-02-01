@@ -30,4 +30,18 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.20.0.0/24  # Corrected ip_range to subnet
+        - subnet: version: '3'
+
+services:
+  nodejs-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=172.20.0.2  # Replace with the actual host or IP of your MySQL server
+      - DB_USER=David
+      - DB_PASSWORD=LiloDavo1996#
+      - DB_NAME=bankdb
+
