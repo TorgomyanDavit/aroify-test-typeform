@@ -8,40 +8,15 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DB_HOST=mysql-container
-      - DB_USER=David
-      - DB_PASSWORD=LiloDavo1996#
-      - DB_NAME=bankdb
-
-  mysql-container:
-    image: mysql:latest
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: LiloDavo1996#
-      MYSQL_DATABASE: bankdb
-      MYSQL_PASSWORD: LiloDavo1996#
-    ports:
-      - "3307:3306"
-    networks:
-      - mynetwork
-
-networks:
-  mynetwork:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: version: '3'
-
-services:
-  nodejs-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
-    environment:
       - DB_HOST=172.20.0.2  # Replace with the actual host or IP of your MySQL server
       - DB_USER=David
       - DB_PASSWORD=LiloDavo1996#
       - DB_NAME=bankdb
+    networks:
+      my-network:
 
+networks:
+  my-network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
