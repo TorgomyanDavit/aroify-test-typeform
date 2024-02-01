@@ -12,11 +12,11 @@ services:
       - DB_USER=David
       - DB_PASSWORD=LiloDavo1996#
       - DB_NAME=bankdb
-        networks:
-      mynetwork:
+      networks:
+        mynetwork:
 
   networks:
-  mynetwork:
-    ipam:
-      config:
-        - subnet: 172.20.0.0/16    
+    mynetwork:
+      ipam:
+        config:
+          - subnet: 172.20.0.0/16    
