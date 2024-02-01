@@ -9,7 +9,7 @@ services:
       - "8000:8000"
     environment:
       - DB_HOST=mysql-container  # Replace with the name of your existing MySQL container
-      - DB_USER=root  # Replace with your MySQL user
+      - DB_USER=David  # Replace with your MySQL user
       - DB_PASSWORD=LiloDavo1996#  # Replace with your MySQL password
       - DB_NAME=bankdb  # Replace with your MySQL database name
     networks:
