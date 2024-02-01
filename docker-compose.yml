@@ -10,21 +10,23 @@ services:
     depends_on:
       - mysql-container
     environment:
-      - DB_HOST=mysql-container  # Replace with the actual host or IP of your MySQL server
-      - DB_USER=David
+      - DB_HOST=mysql-container
+      - DB_USER=root
       - DB_PASSWORD=LiloDavo1996#
       - DB_NAME=bankdb
     networks:
-      mynetwork:
+      - mynetwork
 
   mysql-container:
-      build:
-       context: .
+    image: mysql:latest
+    restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=foobar
+      MYSQL_ROOT_PASSWORD: LiloDavo1996#
+      MYSQL_DATABASE: bankdb
+      MYSQL_PASSWORD: LiloDavo1996#
     networks:
       mynetwork:
-        ipv4_address: 172.20.0.2  # Assign a static IP address
+        ipv4_address: 172.20.0.2
     command: --bind-address=0.0.0.0
 
 networks:
