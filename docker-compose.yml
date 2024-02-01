@@ -8,7 +8,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DB_HOST=172.20.0.2  # Replace with the actual host or IP of your MySQL server
+      - DB_HOST=mysql-container  # Replace with the actual host or IP of your MySQL server
       - DB_USER=David
       - DB_PASSWORD=LiloDavo1996#
       - DB_NAME=bankdb
