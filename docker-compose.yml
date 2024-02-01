@@ -17,17 +17,6 @@ services:
     networks:
       - mynetwork
 
-  mysql-container:
-    image: mysql:latest
-    environment:
-      - MYSQL_ROOT_PASSWORD=LiloDavo1996#
-      - MYSQL_USER=David
-      - MYSQL_PASSWORD=LiloDavo1996#
-    networks:
-      mynetwork:
-        ipv4_address: 172.20.0.2
-    command: --bind-address=0.0.0.0
-
 networks:
   mynetwork:
     ipam:
