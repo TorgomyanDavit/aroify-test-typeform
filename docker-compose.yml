@@ -11,7 +11,7 @@ services:
       - mysql-container
     environment:
       - DB_HOST=mysql-container
-      - DB_USER=root
+      - DB_USER=David
       - DB_PASSWORD=LiloDavo1996#
       - DB_NAME=bankdb
     networks:
