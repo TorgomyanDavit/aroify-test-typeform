@@ -22,8 +22,8 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=foobar
     networks:
-      - my-network
-    ip: 172.20.0.2  # Use 'ip' instead of 'ipv4_address'
+      my-network:
+        ipv4_address: 172.20.0.2
     command: --bind-address=0.0.0.0
 
 networks:
