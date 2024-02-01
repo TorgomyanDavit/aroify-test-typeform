@@ -16,17 +16,16 @@ export const DB = new DataSource({
   entities: [Bank, Currency, Account],
 });
 
-DB.initialize()
-  .then(() => {
-    console.log({
-      type: 'mysql',
-      host: process.env.DB_HOST,
-      port: 3306,
-      username: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      entities: [Bank, Currency, Account],
-    })
-    console.log("Data Source has been initialized!")
+DB.initialize().then(() => {
+  console.log({
+    type: 'mysql',
+    host: process.env.DB_HOST,
+    port: 3306,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    entities: [Bank, Currency, Account],
   })
-  .catch((err) => console.error("Error during Data Source initialization", err));
+  console.log("Data Source has been initialized!")
+})
+.catch((err) => console.error("Error during Data Source initialization", err));

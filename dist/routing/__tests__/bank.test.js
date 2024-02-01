@@ -14,17 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const index_1 = require("../../index"); // Adjust the path based on your project structure
-const typeOrm_1 = require("../../typeOrm");
+const dbInitialize_1 = require("../../dbInitialize");
 beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
-    yield typeOrm_1.DB.initialize();
+    yield dbInitialize_1.DB.initialize();
 }));
 afterAll(() => __awaiter(void 0, void 0, void 0, function* () {
-    yield typeOrm_1.DB.destroy();
+    yield dbInitialize_1.DB.destroy();
 }));
 describe('Bank Route', () => {
     test('should fetch banks', () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield (0, supertest_1.default)(index_1.app).get('/banks');
-        console.log(response.body);
         expect(response.status).toBe(200);
         expect(response.body).toHaveProperty('success', true);
         expect(response.body).toHaveProperty('message', 'Banks found');

@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const addFunction_1 = require("../utils/addFunction");
 const Currency_1 = require("../model/Currency");
-const typeOrm_1 = require("../typeOrm");
+const dbInitialize_1 = require("../dbInitialize");
 const Bank_1 = require("../model/Bank");
 const Account_1 = require("../model/Account");
 const router = express_1.default.Router();
@@ -25,7 +25,7 @@ router.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function*
     let currensyId;
     function AddNewCurrency() {
         return __awaiter(this, void 0, void 0, function* () {
-            const row = yield typeOrm_1.DB.createQueryBuilder().insert().into(Currency_1.Currency)
+            const row = yield dbInitialize_1.DB.createQueryBuilder().insert().into(Currency_1.Currency)
                 .values({
                 isoCode: isoCode,
                 countryOrigin: countryOrigin,
@@ -37,8 +37,8 @@ router.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
     function AddAccount() {
         return __awaiter(this, void 0, void 0, function* () {
-            const findBankId = yield typeOrm_1.DB.manager.findOne(Bank_1.Bank, { where: { bankName: bankName } });
-            const newAccount = yield typeOrm_1.DB.createQueryBuilder().insert().into(Account_1.Account)
+            const findBankId = yield dbInitialize_1.DB.manager.findOne(Bank_1.Bank, { where: { bankName: bankName } });
+            const newAccount = yield dbInitialize_1.DB.createQueryBuilder().insert().into(Account_1.Account)
                 .values({
                 accountNumber: accountNumber,
                 accountName: accountName,
@@ -49,7 +49,7 @@ router.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
     }
     try {
-        const IsoCode = yield typeOrm_1.DB.manager.findOne(Currency_1.Currency, { where: { isoCode: isoCode } });
+        const IsoCode = yield dbInitialize_1.DB.manager.findOne(Currency_1.Currency, { where: { isoCode: isoCode } });
         if (!IsoCode) {
             yield AddNewCurrency();
             yield AddAccount();
@@ -70,7 +70,7 @@ router.get("/:bankId", (req, res) => __awaiter(void 0, void 0, void 0, function*
         if (isNaN(bankId)) {
             return res.status(500).json({ success: false, message: 'Internal server error' });
         }
-        const accounnts = yield typeOrm_1.DB.manager.find(Account_1.Account, {
+        const accounnts = yield dbInitialize_1.DB.manager.find(Account_1.Account, {
             where: { bank_id: bankId }
         });
         if (!accounnts) {

@@ -14,13 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const index_1 = require("../../index"); // Adjust the path based on your project structure
-const typeOrm_1 = require("../../typeOrm");
+const dbInitialize_1 = require("../../dbInitialize");
 const Account_1 = require("../../model/Account");
 beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
-    yield typeOrm_1.DB.initialize();
+    yield dbInitialize_1.DB.initialize();
 }));
 afterAll(() => __awaiter(void 0, void 0, void 0, function* () {
-    yield typeOrm_1.DB.close();
+    yield dbInitialize_1.DB.close();
 }));
 describe('Account Route', () => {
     describe('get acounts as bank id', () => {
@@ -50,7 +50,7 @@ describe('Account Route', () => {
             };
             const response = yield (0, supertest_1.default)(index_1.app).post('/create').send(requestBody);
             expect(response.status).toBe(404);
-            const newAccount = yield typeOrm_1.DB.manager.findOne(Account_1.Account, {
+            const newAccount = yield dbInitialize_1.DB.manager.findOne(Account_1.Account, {
                 where: { accountNumber: '678959' },
             });
             expect(newAccount).toBeDefined();
