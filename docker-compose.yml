@@ -24,11 +24,11 @@ services:
       - "3307:3306"
     networks:
       - mynetwork
-    ipam:
-      config:
-        - subnet: 172.20.0.0/16
-          ip_range: 172.20.0.2/24
 
 networks:
   mynetwork:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          ip_range: 172.20.0.2/24
