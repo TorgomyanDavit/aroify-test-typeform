@@ -6,9 +6,9 @@ import passport  from "passport";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import dotenv from 'dotenv';
-import AccountRouter from "./routing/Account"
-import BankRouter from "./routing/Bank"
-import { RunRedisConnection } from './redisdbinitialize';
+// import AccountRouter from "./routing/Account"
+// import BankRouter from "./routing/Bank"
+import { RunRedisConnection, redisClient } from './redisdbinitialize';
 dotenv.config();
 export const app = express();
 const server = http.createServer(app);
@@ -40,9 +40,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static("public"));
 
-
-app.use("/accounts",AccountRouter)
-app.use("/banks",BankRouter)
+app.get("/", async (req: Request, res: Response) => {
+  try {
+      const data = await redisClient.get("name")
+      console.log(data,"data")
+  } catch (error) {
+      console.error('Error fetching banks:', error);
+      return res.status(500).send({ success: false, message: 'Internal server error' });
+  }
+});
+// app.use("/accounts",AccountRouter)
+// app.use("/banks",BankRouter)
 
 server.listen(process.env.BACKEND_PORT || 8000, () => {
   console.log(`PORT work -> ${process.env.BACKEND_PORT}`);
