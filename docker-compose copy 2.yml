@@ -15,9 +15,20 @@ services:
       - db_redis_host=my-redis-container  # New line for Redis host
       - db_redis_port=6380              # New line for Redis port
       - db_redis_password=LiloDavo1996# # New line for Redis password
+    depends_on:
+      - my-redis-container
     networks:
       - mynetwork
 
-networks:
-  mynetwork:
-    external: true
+
+
+    my-redis-container:
+      image: redis
+      ports:
+        - "6380:6379"
+      networks:
+      - mynetwork
+
+    networks:
+      mynetwork:
+        external: true
