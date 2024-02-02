@@ -13,7 +13,7 @@ dotenv.config();
 export const app = express();
 const server = http.createServer(app);
 
-RunRedisConnection();
+// RunRedisConnection();
 app.use(session({
   // cookie: { expires : new Date(Date.now() + 3600000) },
   secret: process.env.SESSION_SECRET as string,
