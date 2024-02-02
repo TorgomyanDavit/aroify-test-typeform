@@ -3,10 +3,10 @@ import { createClient } from 'redis';
 export const redisClient = createClient({
   // url: `redis:${process.env.db_redis_password}:${process.env.db_redis_password}:6379`
   // username:"default",
-  password:"LiloDavo1996#",
+  password:process.env.db_redis_password,
   socket: {
-    host: "my-redis-container",
-    port:  6380
+    host: process.env.db_redis_host,
+    port: Number(process.env.db_redis_port)
     // tls: true
     // connectTimeout:10000
     // key: readFileSync('./redis_user_private.key'),
