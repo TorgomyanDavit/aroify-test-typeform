@@ -31,4 +31,4 @@ export async function RunRedisConnection() {
   // })
 }
 
-// redisClient.on('error', (err) => console.log('Redis Client Error', err));
+redisClient.on('error', (err) => console.log('Redis Client Error', err));
