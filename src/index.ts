@@ -30,7 +30,7 @@ app.use(cors({
     'http://38.242.152.121:8000',
   ],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  // credentials:true,
+  credentials:true,
   optionsSuccessStatus: 200
 }));
 

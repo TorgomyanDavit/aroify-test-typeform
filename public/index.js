@@ -2,7 +2,9 @@
     const selectElement = document.getElementById("accountType");
     // fetch("http://localhost:8000/banks")
 
-    fetch("http://vmi1512737.contaboserver.net:8000/banks")
+    fetch("http://vmi1512737.contaboserver.net:8000/banks", {
+        credentials: 'include', // Include credentials with the request
+    })
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -23,7 +25,9 @@
 
     selectElement.addEventListener("change", function () {
         const selectedBankId = this.value;
-        fetch(`http://vmi1512737.contaboserver.net:8000/accounts/${selectedBankId}`)
+        fetch(`http://vmi1512737.contaboserver.net:8000/accounts/${selectedBankId}`,{
+            credentials: 'include', // Include credentials with the request
+        })
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
