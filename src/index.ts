@@ -21,18 +21,18 @@ app.use(session({
   saveUninitialized: true
 }));
 
-app.use(cors());
+// app.use(cors());
 
-// app.use(cors({
-//   origin: [
-//     'http://localhost:3000',
-//     'http://localhost:4000',
-//     'http://38.242.152.121:8000',
-//   ],
-//   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-//   credentials:true,
-//   optionsSuccessStatus: 200
-// }));
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:4000',
+    'http://38.242.152.121:8000',
+  ],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  // credentials:true,
+  optionsSuccessStatus: 200
+}));
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -49,6 +49,4 @@ app.use("/banks",BankRouter)
 
 server.listen(process.env.BACKEND_PORT || 8000, () => {
   console.log(`PORT work -> ${process.env.BACKEND_PORT}`);
-  console.log(`PORT SESSION_SECRET -> ${process.env.SESSION_SECRET}`);
-
 });
