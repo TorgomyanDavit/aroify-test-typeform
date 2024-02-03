@@ -46,4 +46,6 @@ app.use("/banks",BankRouter)
 
 server.listen(process.env.BACKEND_PORT || 8000, () => {
   console.log(`PORT work -> ${process.env.BACKEND_PORT}`);
+  console.log(`PORT SESSION_SECRET -> ${process.env.SESSION_SECRET}`);
+
 });
